@@ -1,0 +1,19 @@
+body {
+  font-family: Helvetica;
+  user-select: none;
+}
+
+h1 {
+  color: black;
+  font-size: 24px;
+  text-align: center;
+  font-family: 'Zapfino';
+  font-weight: normal;
+}
+
+#peli {
+  border: 1px solid black;
+  display: block;
+  margin: 0 auto;
+}
+

@@ -1,0 +1,73 @@
+<!doctype html>
+<head>
+	<meta charset="utf8">
+	<title>Kaurin peli</title>
+	<link rel=stylesheet href="style.css">
+</head>
+
+<body>
+<h1>Moi Kauri!</h1>
+
+<canvas id=peli width=400 height=400>
+</canvas>
+
+<script>
+
+	function randomColor() {
+		function hex(n) {
+			return ('0' + n.toString(16)).substr(-2);
+		}
+
+		var r = Math.random() * 256 | 0;
+		var g = Math.random() * 256 | 0;
+		var b = Math.random() * 256 | 0;
+		return '#' + hex(r) + hex(g) + hex(b);
+	}
+
+	let ctx = peli.getContext('2d');
+
+	ctx.fillStyle = randomColor();
+
+	let size = 100;
+
+	function draw(x, y) {
+		console.log('down', x, y);
+
+		ctx.fillRect(x - size / 2, y - size / 2, size, size);
+
+		ctx.fillStyle = randomColor();
+		size = size * 0.9;
+	}
+
+	function double() {
+		size = size * 2;
+	}
+
+	let cursorX = 0;
+	let cursorY = 0;
+
+	peli.addEventListener('mousedown', function(ev) {
+		let x = ev.offsetX;
+		let y = ev.offsetY;
+
+		draw(x, y);
+	});
+
+	peli.addEventListener('mousemove', function(ev) {
+		let x = ev.offsetX;
+		let y = ev.offsetX;
+
+		cursorX = x;
+		cursorY = y;
+
+		console.log('move', x, y);
+	});
+
+	window.addEventListener('keydown', function(ev) {
+		console.log('key', ev.keyCode);
+		if (ev.keyCode === 82) {
+			window.location.reload();
+		}
+	});
+</script>
+</body>
