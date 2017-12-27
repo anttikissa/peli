@@ -46,21 +46,44 @@
 	let cursorX = 0;
 	let cursorY = 0;
 
+	let interval;
+
 	peli.addEventListener('mousedown', function(ev) {
+		// console.log('mousedown', ev.offsetX, ev.offsetY);
+
+		if (interval) {
+			clearInterval(interval);
+			interval = null;
+		}
+
+		interval = setInterval(function() {
+			draw(cursorX, cursorY);
+		}, 100);
+
 		let x = ev.offsetX;
 		let y = ev.offsetY;
 
 		draw(x, y);
 	});
 
+	peli.addEventListener('mouseup', function() {
+		// console.log('mouseup');
+
+		if (interval) {
+			clearInterval(interval);
+			interval = null;
+		}
+
+	});
+
 	peli.addEventListener('mousemove', function(ev) {
+		console.log('mousemove', ev.offsetX, ev.offsetY);
+
 		let x = ev.offsetX;
-		let y = ev.offsetX;
+		let y = ev.offsetY;
 
 		cursorX = x;
 		cursorY = y;
-
-		console.log('move', x, y);
 	});
 
 	window.addEventListener('keydown', function(ev) {
