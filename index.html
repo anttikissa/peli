@@ -32,7 +32,7 @@
 
 	// 1 = bigger
 	// -1 = smaller
-	let sizeChangeDirection = 1;
+	let sizeChangeDirection = -1;
 
 	let changeSize = function() {
 		if (sizeChangeDirection < 0) {
@@ -67,6 +67,16 @@
 	let interval;
 
 	peli.addEventListener('mousedown', function(ev) {
+
+		window.addEventListener('mouseup', function mouseup() {
+			if (interval) {
+				clearInterval(interval);
+				interval = null;
+			}
+
+			window.removeEventListener('mouseup', mouseup);
+		});
+
 		// console.log('mousedown', ev.offsetX, ev.offsetY);
 
 		if (interval) {
@@ -82,16 +92,6 @@
 		let y = ev.offsetY;
 
 		draw(x, y);
-	});
-
-	peli.addEventListener('mouseup', function() {
-		// console.log('mouseup');
-
-		if (interval) {
-			clearInterval(interval);
-			interval = null;
-		}
-
 	});
 
 	peli.addEventListener('mousemove', function(ev) {
