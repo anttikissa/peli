@@ -77,7 +77,7 @@
 			window.removeEventListener('mouseup', mouseup);
 		});
 
-		// console.log('mousedown', ev.offsetX, ev.offsetY);
+		console.log('mousedown', ev.offsetX, ev.offsetY);
 
 		if (interval) {
 			clearInterval(interval);
@@ -90,6 +90,9 @@
 
 		let x = ev.offsetX;
 		let y = ev.offsetY;
+
+		cursorX = x;
+		cursorY = y;
 
 		draw(x, y);
 	});
